@@ -27,3 +27,18 @@ It sets the uid of the container default user ("git") to your uid so that
 - you are the owner of all created files and directories (e.g. after clone or pull)
 
 The specified repository gets cloned into the bind mounted working directory. 
+
+## Alias
+
+Create an alias to invoke that command by a shortcut for your convenience, instead of repeatetly typing the command sequence.
+
+In Bash you add the following line to file _~/.bash_aliases_ (if it does not exist, create it)
+```
+alias git='docker run --rm -it --user $(id -u ${USER}) -v $(pwd):/git -v ~/.ssh:/home/git/.ssh:ro bemede/git'
+```
+
+To execute the command shown in the example above you now simply run the alias
+```
+git clone git@github.com:bernd-meyer/docker-git.git
+```
+
